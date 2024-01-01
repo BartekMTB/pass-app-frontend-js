@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div className={css.container}>
       <h1 className={css.title}>
-        Home Page of Pass App
+        Welcome to goit-react-hw-08-phonebook homework :)
       </h1>
     </div>
   );
