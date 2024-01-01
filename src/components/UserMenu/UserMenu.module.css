@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  font-size: 20px;
+
+  margin: 0;
+}
+
+.Btn {
+  margin-left: 10px;
+  width: 80px;
+  height: 20px;
+
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(143, 100, 146);
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  transition: all 500ms ease;
+  cursor: pointer;
+}
+
+.Btn:hover {
+  background-color: rgb(25, 64, 194);
+  color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 5px rgb(85, 84, 84);
+}

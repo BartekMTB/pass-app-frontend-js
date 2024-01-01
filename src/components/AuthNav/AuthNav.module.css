@@ -1,0 +1,11 @@
+.link {
+  font-size: 20px;
+  margin-right: 20px;
+  text-decoration: none;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.link.active {
+  color: #e84a5f;
+}
