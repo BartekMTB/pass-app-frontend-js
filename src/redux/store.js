@@ -1,4 +1,19 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit"
+import { apiSlice } from "./api/apiSlice"
+import authReducer from './api/authSlice'
+
+export const store = configureStore({
+    reducer: {
+        [apiSlice.reducerPath]: apiSlice.reducer,
+        auth: authReducer
+    },
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware().concat(apiSlice.middleware),
+    devTools: true
+})
+
+
+/* import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -39,3 +54,4 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+ */

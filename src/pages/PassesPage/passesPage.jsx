@@ -1,6 +1,6 @@
 import css from './passesPage.module.css';
 import { Helmet } from 'react-helmet';
-import { useGetPassQuery } from '../../redux/passes/apiPasses'
+import { useGetPassQuery } from '../../redux/api/passesApiSlice'
 
 const PassOne = () => {
   const passId  = "658dc13c49e85b048cb209d7"
@@ -10,7 +10,7 @@ const PassOne = () => {
     isLoading,
     isSuccess,
     isError,
-    error
+    error,
   } = useGetPassQuery(passId)
 
   let content
@@ -18,7 +18,7 @@ const PassOne = () => {
   if (isLoading) {
     content = <p>Loading...</p>
   } else if (isSuccess) {
-    content = pass.contactfound.personOnPass
+    content = JSON.stringify(pass.contactfound)
   } else if (isError) {
     content = <div>{error.toString()}</div>
   }
@@ -37,12 +37,13 @@ const PassesHome = () => {
     <Helmet>
       <title>Passes test page</title>
     </Helmet>
-   
+
       <h1 className={css.title}>
       Passes test page
       </h1>
       <div>
-      <PassOne/></div>
+   <PassOne/>
+      </div>
     </div>
   );
 };
