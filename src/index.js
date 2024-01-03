@@ -2,20 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 //import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
-//import { App } from './components/App/App';
+import { App } from './components/App/App';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import './index.css';
-import  PassesHome  from './pages/PassesPage/passesPage'
+//import  PassesHome  from './pages/PassesPage/passesPage'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-     
         <BrowserRouter basename="/pass-app-frontend-js">
-          <PassesHome />
+          <App />
         </BrowserRouter>
-    
     </Provider>
   </React.StrictMode>
 );

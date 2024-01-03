@@ -1,19 +1,25 @@
-import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/operations';
+//import { useDispatch } from 'react-redux';
+//import { logIn } from '../../redux/auth/operations';
 import css from './LoginForm.module.css';
+import { useLoginMutation } from '../../redux/api/authApiSlice'
 
 export const LoginForm = () => {
-  const dispatch = useDispatch();
+ // const dispatch = useDispatch();
 
-  const handleSubmit = e => {
+  const [login, { isLoading }] = useLoginMutation()  
+  const handleSubmit = async e => {
     e.preventDefault();
     const form = e.currentTarget;
-    dispatch(
+    console.log(isLoading)
+    await login({email: form.elements.email.value,
+      password: form.elements.password.value,}).unwrap()
+      console.log(login)
+  /*   dispatch(
       logIn({
         email: form.elements.email.value,
         password: form.elements.password.value,
       })
-    );
+    ); */
     form.reset();
   };
 
