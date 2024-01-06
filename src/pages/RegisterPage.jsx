@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import { RegisterForm } from '../../components/RegisterForm/RegisterForm';
+import { RegisterForm } from '../features/auth/RegisterForm';
 
 const Register = () => {
   return (

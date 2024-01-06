@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import { LoginForm } from '../../components/LoginForm/LoginForm';
+import { LoginForm } from '../features/auth/LoginForm';
 
 
 const Login = () => {
