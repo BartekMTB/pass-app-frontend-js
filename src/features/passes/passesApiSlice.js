@@ -1,5 +1,5 @@
 // Import the RTK Query methods from the React-specific entry point
-import { apiSlice } from "./apiSlice";
+import { apiSlice } from "../../app/apiSlice";
 
 export const passesApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({

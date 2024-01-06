@@ -12,7 +12,7 @@ const RegisterPage = lazy(() =>
   import('../pages/RegisterPage')
 );
 const LoginPage = lazy(() => import('../pages/LoginPage'));
-const ContactsPage = lazy(() => import('../pages/ContactPage/contactPage'));
+const PassesPage = lazy(() => import('../pages/PassesPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -40,13 +40,13 @@ export const App = () => {
         <Route
           path="/login"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+            <RestrictedRoute redirectTo="/passes" component={<LoginPage />} />
           }
         />
         <Route
-          path="/contacts"
+          path="/passes"
           element={
-            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            <PrivateRoute redirectTo="/login" component={<PassesPage />} />
           }
         />
       </Route>

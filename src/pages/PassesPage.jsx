@@ -1,6 +1,6 @@
 import css from './passesPage.module.css';
 import { Helmet } from 'react-helmet';
-import { useGetPassQuery } from '../../redux/api/passesApiSlice'
+import { useGetPassQuery } from '../features/passes/passesApiSlice'
 
 const PassOne = () => {
   const passId  = "658dc13c49e85b048cb209d7"

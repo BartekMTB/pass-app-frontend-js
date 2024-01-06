@@ -1,26 +1,36 @@
-//import { useDispatch } from 'react-redux';
-//import { logIn } from '../../redux/auth/operations';
+import { useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 import css from './LoginForm.module.css';
 import { useLoginMutation } from './authApiSlice'
+import { setCredentials } from './authSlice'
 
 export const LoginForm = () => {
- // const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [login, { isLoading }] = useLoginMutation()  
+
+/* const {
+    data: pass,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetPassQuery(passId) */
+
   const handleSubmit = async e => {
     e.preventDefault();
     const form = e.currentTarget;
     console.log(isLoading)
-    
-    await login({email: form.elements.email.value,
-      password: form.elements.password.value,}).unwrap()
-      console.log(login)
-  /*   dispatch(
-      logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    ); */
+      try {
+        const user = await login({email: form.elements.email.value,
+          password: form.elements.password.value,}).unwrap()
+          console.log(user)
+        dispatch(setCredentials(user))
+        navigate('/')
+      } catch (err) {
+        console.log(err)
+      }
     form.reset();
   };
 
