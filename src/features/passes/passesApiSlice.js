@@ -9,8 +9,14 @@ export const passesApiSlice = apiSlice.injectEndpoints({
           
       }),
       getPasses: builder.query({
-        query: () => '/passes/'
-      }),
+        query: (arg) => {
+         // const { year, passPerPage, numbeOfPage } = arg;
+          console.log('arg: ', arg);
+          return {
+            url: 'passes',
+            params: { ...arg },
+          }}
+        }),
   })
 })
 

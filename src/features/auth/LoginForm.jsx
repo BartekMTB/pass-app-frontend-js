@@ -25,7 +25,7 @@ export const LoginForm = () => {
       try {
         const user = await login({email: form.elements.email.value,
           password: form.elements.password.value,}).unwrap()
-          console.log(user)
+    //      console.log(user)
         dispatch(setCredentials(user))
         navigate('/')
       } catch (err) {
