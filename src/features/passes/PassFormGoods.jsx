@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 //import schema from "./passForm.schema";
 //import { useNewPassMutation } from "./passesApiSlice";
 
-export const PassFormGoods = ({ control }) => {
+export const PassFormGoods = () => {
   // console.log(errors);
+  // console.log("PassFormGood", defaultValues);
   const { register } = useFormContext();
   const { fields, append, remove } = useFieldArray({
-    control,
     name: "goods",
   });
   //  console.log(watch());
@@ -16,7 +16,6 @@ export const PassFormGoods = ({ control }) => {
 
   return (
     <div>
-      {console.log(fields)}
       <ul>
         {fields.map((field, index) => {
           return (
@@ -48,6 +47,7 @@ export const PassFormGoods = ({ control }) => {
 };
 
 PassFormGoods.propTypes = {
+  defaultValues: PropTypes.object.isRequired,
   control: PropTypes.object.isRequired,
   register: PropTypes.func.isRequired,
   errors: PropTypes.string.isRequired,

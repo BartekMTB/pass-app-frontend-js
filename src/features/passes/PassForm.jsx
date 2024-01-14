@@ -5,76 +5,86 @@ import { PassFormGoods } from "./PassFormGoods";
 //import { useNewPassMutation } from "./passesApiSlice";
 
 export const PassForm = () => {
-  const methods = useForm();
+  const defaultValues = {
+    personOnPass: "John",
+    personOnPassCompany: "Example Company",
+    personOnPassID: "FK 3232",
+    datePass: "2023-02-11",
+    authorPass: "Pan Dariusz",
+    directionOfOutflow: "doZakladu",
+    originOfGoods: "Produkcja odpad",
+    baseCreatingPass: "przekazanie odpadu, utylizacja",
+    canceled: false,
+    goods: [
+      { name: "testname", amount: 2 },
+      { name: "testname1", amount: 3 },
+    ],
+  };
+  const methods = useForm({ defaultValues });
 
-  const {
+  /*   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
     //watch, wyswietla inputy realtime
     reset,
-  } = useForm({
-    defaultValues: {
-      goods: [
-        { name: "testname", amount: 2 },
-        { name: "testname1", amount: 3 },
-      ],
-    },
-  });
+  } = useForm({ defaultValues }); */
 
   //  console.log(watch());
   //  console.log(watch(fieldname));
 
-  console.log(errors);
+  //console.log(errors);
 
   const onSubmit = (data) => console.log("data", data);
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
         <h1>Array of Array Fields</h1>
         <p>
           The following example demonstrate the ability of building nested array
           fields.
         </p>
 
-        {/*  <input
-        {...register("personOnPass", { required: "this is required" })}
-        placeholder="Person on Pass"
-      />
-      <p>{errors.personOnPass?.message}</p>
-      <input
-        {...register("personOnPassCompany", { required: true })}
-        placeholder="Company name"
-      />
-      <input
-        {...register("personOnPassID", { required: true })}
-        placeholder="some kind of ID numer"
-      />
-      <input
-        {...register("datePass", { required: true })}
-        placeholder="2024-02-11"
-      />
-      <input
-        {...register("authorPass", { required: true })}
-        placeholder="Pan Dariusz"
-      />
-      <input
-        {...register("directionOfOutflow", { required: true })}
-        placeholder="doZakladu"
-      />
-      <input
-        {...register("originOfGoods", { required: true })}
-        placeholder="Produkcja odpad"
-      />
-      <input
-        {...register("baseCreatingPass", { required: true })}
-        placeholder="przekazanie odpadu, utylizacja"
-      /> */}
-        <PassFormGoods {...{ control, register, errors }} />
+        <input
+          {...methods.register("personOnPass", {
+            required: "this is required",
+          })}
+          placeholder="Person on Pass"
+        />
 
-        <button type="button" onClick={() => reset()}>
+        <input
+          {...methods.register("personOnPassCompany", { required: true })}
+          placeholder="Company name"
+        />
+        <input
+          {...methods.register("personOnPassID", { required: true })}
+          placeholder="some kind of ID numer"
+        />
+        <input
+          {...methods.register("datePass", { required: true })}
+          placeholder="2024-02-11"
+        />
+        <input
+          {...methods.register("authorPass", { required: true })}
+          placeholder="Pan Dariusz"
+        />
+        <input
+          {...methods.register("directionOfOutflow", { required: true })}
+          placeholder="doZakladu"
+        />
+        <input
+          {...methods.register("originOfGoods", { required: true })}
+          placeholder="Produkcja odpad"
+        />
+        <input
+          {...methods.register("baseCreatingPass", { required: true })}
+          placeholder="przekazanie odpadu, utylizacja"
+        />
+        <PassFormGoods {...{ methods }} />
+
+        <button type="button" onClick={() => methods.reset()}>
           Reset
         </button>
         <input type="submit" />
