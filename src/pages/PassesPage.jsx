@@ -1,20 +1,19 @@
-import css from './passesPage.module.css';
-import { Helmet } from 'react-helmet';
+import css from "./passesPage.module.css";
+import { Helmet } from "react-helmet";
 //import { useGetPassesQuery } from '../features/passes/passesApiSlice'
-import { Passes} from '../features/passes/Passes'
-
+import { PassesList } from "../features/passes/PassesList";
 
 const PassesHome = () => {
   return (
     <div className={css.container}>
-    <Helmet>
-      <title>Passes list page</title>
-    </Helmet>
+      <Helmet>
+        <title>Passes list page</title>
+      </Helmet>
       <div>
-        <Passes/>
+        <PassesList />
       </div>
     </div>
   );
 };
 
-export default PassesHome
+export default PassesHome;

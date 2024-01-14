@@ -1,18 +1,17 @@
-import { useEffect, lazy } from 'react';
-import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import { LayoutPage } from '../components/LayoutPage/LayoutPage';
-import { PrivateRoute } from '../components/PrivateRoute';
-import { RestrictedRoute } from '../components/RestrictedRoute';
-import { refreshUser } from '../redux/auth/operations';
-import { useAuth } from '../hooks/useAuth';
+import { useEffect, lazy } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { LayoutPage } from "../components/LayoutPage/LayoutPage";
+import { PrivateRoute } from "../components/PrivateRoute";
+import { RestrictedRoute } from "../components/RestrictedRoute";
+import { refreshUser } from "../redux/auth/operations";
+import { useAuth } from "../hooks/useAuth";
 
-const HomePage = lazy(() => import('../pages/HomePage'));
-const RegisterPage = lazy(() =>
-  import('../pages/RegisterPage')
-);
-const LoginPage = lazy(() => import('../pages/LoginPage'));
-const PassesPage = lazy(() => import('../pages/PassesPage'));
+const HomePage = lazy(() => import("../pages/HomePage"));
+const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+const LoginPage = lazy(() => import("../pages/LoginPage"));
+const PassesPage = lazy(() => import("../pages/PassesPage"));
+const NewPass = lazy(() => import("../pages/NewPassPage"));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -32,7 +31,7 @@ export const App = () => {
           path="/register"
           element={
             <RestrictedRoute
-              redirectTo="/contacts"
+              redirectTo="/passes"
               component={<RegisterPage />}
             />
           }
@@ -45,6 +44,16 @@ export const App = () => {
         />
         <Route
           path="/passes"
+          element={
+            <PrivateRoute redirectTo="/login" component={<PassesPage />} />
+          }
+        />
+        <Route
+          path="/newpass"
+          element={<PrivateRoute redirectTo="/login" component={<NewPass />} />}
+        />
+        <Route
+          path="/"
           element={
             <PrivateRoute redirectTo="/login" component={<PassesPage />} />
           }
