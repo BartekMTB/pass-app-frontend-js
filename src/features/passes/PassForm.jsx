@@ -3,7 +3,7 @@ import { PassFormGoods } from "./PassFormGoods";
 import css from "./PassForm.module.css";
 
 export const PassForm = () => {
-  /*   const defaultValues = {
+  /* const defaultValues = {
     personOnPass: "John",
     personOnPassCompany: "Example Company",
     personOnPassID: "FK 3232",
@@ -14,14 +14,26 @@ export const PassForm = () => {
     baseCreatingPass: "przekazanie odpadu, utylizacja",
     canceled: false,
     goods: [
-      { name: "testname", amount: 2 },
-      { name: "testname1", amount: 3 },
-      { name: "testname2", amount: 4 },
+      {
+        goodaName: "Makulatura",
+        unit: "KG",
+        quantity: "500",
+        comments: "mutylizacja opon",
+      },
     ],
   }; */
 
-  const defaultValues1 = {};
-  const methods = useForm({ defaultValues1 });
+  const defaultValues = {
+    goods: [
+      {
+        goodaName: "",
+        unit: "",
+        quantity: "",
+        comments: "",
+      },
+    ],
+  };
+  const methods = useForm({ defaultValues });
   console.log(methods);
 
   const onSubmit = (data) => console.log("data", data);
@@ -33,7 +45,7 @@ export const PassForm = () => {
           <input
             className={css.formInput}
             {...methods.register("personOnPass", {
-              required: "  this is required",
+              required: "  Please enter full name person on Pass",
             })}
             placeholder="Person on Pass"
           />
@@ -41,7 +53,7 @@ export const PassForm = () => {
         </div>
         <input
           className={css.formInput}
-          {...methods.register("personOnPassCompany", { required: true })}
+          {...methods.register("personOnPassCompany")}
           placeholder="Person's company name"
         />
         <input
@@ -54,33 +66,50 @@ export const PassForm = () => {
           {...methods.register("datePass")}
           placeholder="Date Pass"
         />
-        <input
-          className={css.formInput}
-          {...methods.register("authorPass", { required: true })}
-          placeholder="issuing passes"
-        />
-        {/*  <input
-          {...methods.register("directionOfOutflow", { required: true })}
-          placeholder="doZakladu"
-        /> */}
-        <select {...methods.register("directionOfOutflow", { required: true })}>
-          <option value="">Select directionOfOutflow</option>
-          <option value="doZakladu">doZakladu</option>
-          <option value="naZewnarz">naZewnarz</option>
-        </select>
-
-        <input
-          className={css.formInput}
-          {...methods.register("originOfGoods", { required: true })}
-          placeholder="origin of the goods"
-        />
-        <input
-          className={css.formInput}
-          {...methods.register("baseCreatingPass", { required: true })}
-          placeholder="basis for creating a pass"
-        />
+        <div>
+          <input
+            className={css.formInput}
+            {...methods.register("authorPass", {
+              required: "  Please enter pass issuer full name ",
+            })}
+            placeholder="issuing passes"
+          />
+          <span>{methods.formState.errors.authorPass?.message}</span>
+        </div>
+        <div>
+          <select
+            style={{ width: "220px" }}
+            {...methods.register("directionOfOutflow", {
+              required: "  Please select the direction of goods distribution",
+            })}
+          >
+            <option value="">Select directionOfOutflow</option>
+            <option value="doZakladu">doZakladu</option>
+            <option value="naZewnarz">naZewnarz</option>
+          </select>
+          <span>{methods.formState.errors.directionOfOutflow?.message}</span>
+        </div>
+        <div>
+          <input
+            className={css.formInput}
+            {...methods.register("originOfGoods", {
+              required: "  Please enter origin of the goods",
+            })}
+            placeholder="origin of the goods"
+          />
+          <span>{methods.formState.errors.originOfGoods?.message}</span>
+        </div>
+        <div>
+          <input
+            className={css.formInput}
+            {...methods.register("baseCreatingPass", {
+              required: "  Please enter basis for creating a pass",
+            })}
+            placeholder="basis for creating a pass"
+          />
+          <span>{methods.formState.errors.baseCreatingPass?.message}</span>
+        </div>
         <PassFormGoods {...{ methods }} />
-
         <div>
           <button
             type="button"

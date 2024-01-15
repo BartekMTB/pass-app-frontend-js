@@ -2,26 +2,26 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import css from "./PassForm.module.css";
 
 export const PassFormGoods = () => {
-  // console.log(errors);
-  // console.log("PassFormGood", defaultValues);
   const { register } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     name: "goods",
   });
-  //  console.log(watch());
-  //  console.log(watch(fieldname));
 
   return (
     <div>
+      <span>Fields below can&apos;t be empty</span>
       <ul>
         {fields.map((field, index) => {
           return (
             <li key={field.id}>
               <input
-                className={css.formInputGoods}
-                {...register(`goods.${index}.goodaName`)}
-                placeholder="Good name"
+                style={{ width: "180px" }}
+                {...register(`goods.${index}.goodaName`, {
+                  required: true,
+                })}
+                placeholder="Products name"
               />
+
               <select {...register(`goods.${index}.unit`, { required: true })}>
                 <option value="">Select unit</option>
                 <option value="KG">KG</option>
@@ -31,14 +31,21 @@ export const PassFormGoods = () => {
                 <option value="SZT">SZT</option>
               </select>
               <input
+                style={{ width: "55px" }}
                 className={css.formInputGoods}
-                {...register(`goods.${index}.quantity`)}
+                {...register(`goods.${index}.quantity`, {
+                  required: true,
+                })}
+                placeholder="Quantity"
               />
               <input
+                style={{ width: "210px" }}
                 className={css.formInputGoods}
-                {...register(`goods.${index}.comments`)}
+                {...register(`goods.${index}.comments`, {
+                  required: true,
+                })}
+                placeholder="Comment"
               />
-              {/* unit: Joi.string().valid('KG', 'L', 'M2', 'M3', 'SZT').required(), // enum */}
               <button
                 className={css.passBtn}
                 type="button"
@@ -50,6 +57,7 @@ export const PassFormGoods = () => {
           );
         })}
       </ul>
+
       <button
         className={css.passBtn}
         type="button"
@@ -60,7 +68,7 @@ export const PassFormGoods = () => {
           });
         }}
       >
-        Append
+        add a line
       </button>
     </div>
   );
