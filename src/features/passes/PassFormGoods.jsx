@@ -1,8 +1,5 @@
-//import React from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import PropTypes from "prop-types";
-//import schema from "./passForm.schema";
-//import { useNewPassMutation } from "./passesApiSlice";
+import css from "./PassForm.module.css";
 
 export const PassFormGoods = () => {
   // console.log(errors);
@@ -20,11 +17,33 @@ export const PassFormGoods = () => {
         {fields.map((field, index) => {
           return (
             <li key={field.id}>
-              <input {...register(`goods.${index}.name`)} />
-
-              <input {...register(`goods.${index}.amount`)} />
-
-              <button type="button" onClick={() => remove(index)}>
+              <input
+                className={css.formInputGoods}
+                {...register(`goods.${index}.goodaName`)}
+                placeholder="Good name"
+              />
+              <select {...register(`goods.${index}.unit`, { required: true })}>
+                <option value="">Select unit</option>
+                <option value="KG">KG</option>
+                <option value="L">L</option>
+                <option value="M2">M2</option>
+                <option value="M3">M3</option>
+                <option value="SZT">SZT</option>
+              </select>
+              <input
+                className={css.formInputGoods}
+                {...register(`goods.${index}.quantity`)}
+              />
+              <input
+                className={css.formInputGoods}
+                {...register(`goods.${index}.comments`)}
+              />
+              {/* unit: Joi.string().valid('KG', 'L', 'M2', 'M3', 'SZT').required(), // enum */}
+              <button
+                className={css.passBtn}
+                type="button"
+                onClick={() => remove(index)}
+              >
                 Delete
               </button>
             </li>
@@ -32,6 +51,7 @@ export const PassFormGoods = () => {
         })}
       </ul>
       <button
+        className={css.passBtn}
         type="button"
         onClick={() => {
           append({
@@ -44,11 +64,4 @@ export const PassFormGoods = () => {
       </button>
     </div>
   );
-};
-
-PassFormGoods.propTypes = {
-  defaultValues: PropTypes.object.isRequired,
-  control: PropTypes.object.isRequired,
-  register: PropTypes.func.isRequired,
-  errors: PropTypes.string.isRequired,
 };

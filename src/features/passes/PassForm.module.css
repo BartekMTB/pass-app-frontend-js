@@ -1,19 +1,24 @@
-.passesList {
-  border-color: rgb(143, 100, 146);
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  margin-top: 40px;
-  list-style: none;
+.formlabel {
+  font-size: 16px;
+  color: rgb(143, 100, 146);
 }
 
-.passesItem {
-  margin-bottom: 10px;
-  text-align: right;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+.formInput {
+  /* margin-bottom: 20px; */
+  width: 200px;
+  padding: 8px;
+  /* border-color: rgb(143, 100, 146);
+  border-radius: 5px;
+  font-size: 16px; */
+}
+
+.formInputGoods {
+  /* margin-bottom: 20px; */
+  width: 100px;
+
+  /* border-color: rgb(143, 100, 146);
+  border-radius: 5px;
+  font-size: 16px; */
 }
 
 .passBtn {
@@ -34,4 +39,16 @@
   background-color: blueviolet;
   color: azure;
   box-shadow: 5px 5px 5px rgb(85, 84, 84);
+}
+
+form {
+  align-items: flex-start;
+  width: 700px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-style: solid;
+  border-color: rgb(143, 100, 146);
+  border-radius: 5px;
 }

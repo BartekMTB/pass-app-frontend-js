@@ -1,11 +1,9 @@
-//import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { PassFormGoods } from "./PassFormGoods";
-//import schema from "./passForm.schema";
-//import { useNewPassMutation } from "./passesApiSlice";
+import css from "./PassForm.module.css";
 
 export const PassForm = () => {
-  const defaultValues = {
+  /*   const defaultValues = {
     personOnPass: "John",
     personOnPassCompany: "Example Company",
     personOnPassID: "FK 3232",
@@ -18,113 +16,84 @@ export const PassForm = () => {
     goods: [
       { name: "testname", amount: 2 },
       { name: "testname1", amount: 3 },
+      { name: "testname2", amount: 4 },
     ],
-  };
-  const methods = useForm({ defaultValues });
+  }; */
 
-  /*   const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-    //watch, wyswietla inputy realtime
-    reset,
-  } = useForm({ defaultValues }); */
-
-  //  console.log(watch());
-  //  console.log(watch(fieldname));
-
-  //console.log(errors);
+  const defaultValues1 = {};
+  const methods = useForm({ defaultValues1 });
+  console.log(methods);
 
   const onSubmit = (data) => console.log("data", data);
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <h1>Array of Array Fields</h1>
-        <p>
-          The following example demonstrate the ability of building nested array
-          fields.
-        </p>
-
+        <div>
+          <input
+            className={css.formInput}
+            {...methods.register("personOnPass", {
+              required: "  this is required",
+            })}
+            placeholder="Person on Pass"
+          />
+          <span>{methods.formState.errors.personOnPass?.message}</span>
+        </div>
         <input
-          {...methods.register("personOnPass", {
-            required: "this is required",
-          })}
-          placeholder="Person on Pass"
-        />
-
-        <input
+          className={css.formInput}
           {...methods.register("personOnPassCompany", { required: true })}
-          placeholder="Company name"
+          placeholder="Person's company name"
         />
         <input
-          {...methods.register("personOnPassID", { required: true })}
-          placeholder="some kind of ID numer"
+          className={css.formInput}
+          {...methods.register("personOnPassID")}
+          placeholder="ID numer"
         />
         <input
-          {...methods.register("datePass", { required: true })}
-          placeholder="2024-02-11"
+          className={css.formInput}
+          {...methods.register("datePass")}
+          placeholder="Date Pass"
         />
         <input
+          className={css.formInput}
           {...methods.register("authorPass", { required: true })}
-          placeholder="Pan Dariusz"
+          placeholder="issuing passes"
         />
-        <input
+        {/*  <input
           {...methods.register("directionOfOutflow", { required: true })}
           placeholder="doZakladu"
-        />
+        /> */}
+        <select {...methods.register("directionOfOutflow", { required: true })}>
+          <option value="">Select directionOfOutflow</option>
+          <option value="doZakladu">doZakladu</option>
+          <option value="naZewnarz">naZewnarz</option>
+        </select>
+
         <input
+          className={css.formInput}
           {...methods.register("originOfGoods", { required: true })}
-          placeholder="Produkcja odpad"
+          placeholder="origin of the goods"
         />
         <input
+          className={css.formInput}
           {...methods.register("baseCreatingPass", { required: true })}
-          placeholder="przekazanie odpadu, utylizacja"
+          placeholder="basis for creating a pass"
         />
         <PassFormGoods {...{ methods }} />
 
-        <button type="button" onClick={() => methods.reset()}>
-          Reset
-        </button>
-        <input type="submit" />
+        <div>
+          <button
+            type="button"
+            className={css.passBtn}
+            onClick={() => methods.reset()}
+          >
+            Reset
+          </button>
+          <button type="submit" className={css.passBtn}>
+            Submit
+          </button>
+        </div>
       </form>
     </FormProvider>
   );
 };
-
-/* export const PassesForm = () => {
-  const {
-    data: pass,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useNewPassMutation();
-
-  let content;
-
-  if (isLoading) {
-    content = <p>Loading...</p>;
-  } else if (isError) {
-    content = <div>{error.toString()}</div>;
-  } else if (isSuccess) {
-    content = pass.newPass;
-    //   content = pass.results.docs.map(({_id,passNumber,personOnPassCompany,baseCreatingPass})=> ({id:_id,passNumber:passNumber}))
-  }
-  console.log(content);
-  return <div></div>;
-};
-<FieldArray
-        {...{ control, register, defaultValues, getValues, setValue, errors }}
-      />
-
-       {    <input
-        {...register("personOnPass", {
-          required: "this is required",
-          minLength: { value: 5, message: "min leteer" },
-        })}
-        placeholder="Person on Pass"
-      />}
-
- */
