@@ -77,21 +77,32 @@ export const PassForm = () => {
           />
           <span>{methods.formState.errors.personOnPass?.message}</span>
         </div>
-        <input
-          className={css.formInput}
-          {...methods.register("personOnPassCompany")}
-          placeholder="Person's company name"
-        />
-        <input
-          className={css.formInput}
-          {...methods.register("personOnPassID")}
-          placeholder="ID numer"
-        />
-        <input
-          className={css.formInput}
-          {...methods.register("datePass")}
-          placeholder="Date Pass"
-        />
+        <div>
+          <input
+            className={css.formInput}
+            {...methods.register("personOnPassCompany")}
+            placeholder="Person's company name"
+          />
+          <span>{methods.formState.errors.personOnPassCompany?.message}</span>
+        </div>
+        <div>
+          <input
+            className={css.formInput}
+            {...methods.register("personOnPassID")}
+            placeholder="ID numer"
+          />
+          <span>
+            {methods.formState.errors.personOnPassCompany?.personOnPassID}
+          </span>
+        </div>
+        <div>
+          <input
+            className={css.formInput}
+            {...methods.register("datePass")}
+            placeholder="Date Pass"
+          />
+          <span>{methods.formState.errors.personOnPassCompany?.datePass}</span>
+        </div>
         <div>
           <input
             className={css.formInput}
