@@ -2,27 +2,25 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import css from "./PassForm.module.css";
 
 export const PassFormGoods = () => {
-  const { register } = useFormContext();
+  const { register, formState } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     name: "goods",
   });
 
   return (
     <div>
-      <span>Fields below can&apos;t be empty</span>
+      {formState.errors.goods && <p>{formState.errors.goods.root?.message}</p>}
       <ul>
         {fields.map((field, index) => {
           return (
             <li key={field.id}>
               <input
                 style={{ width: "180px" }}
-                {...register(`goods.${index}.goodaName`, {
-                  required: true,
-                })}
+                {...register(`goods.${index}.goodaName`)}
                 placeholder="Products name"
               />
 
-              <select {...register(`goods.${index}.unit`, { required: true })}>
+              <select {...register(`goods.${index}.unit`)}>
                 <option value="">Select unit</option>
                 <option value="KG">KG</option>
                 <option value="L">L</option>
@@ -33,17 +31,13 @@ export const PassFormGoods = () => {
               <input
                 style={{ width: "55px" }}
                 className={css.formInputGoods}
-                {...register(`goods.${index}.quantity`, {
-                  required: true,
-                })}
+                {...register(`goods.${index}.quantity`)}
                 placeholder="Quantity"
               />
               <input
                 style={{ width: "210px" }}
                 className={css.formInputGoods}
-                {...register(`goods.${index}.comments`, {
-                  required: true,
-                })}
+                {...register(`goods.${index}.comments`)}
                 placeholder="Comment"
               />
               <button
@@ -53,6 +47,18 @@ export const PassFormGoods = () => {
               >
                 Delete
               </button>
+              {formState.errors.goods && (
+                <p>{formState.errors.goods[index]?.goodaName?.message}</p>
+              )}
+              {formState.errors.goods && (
+                <p>{formState.errors.goods[index]?.unit?.message}</p>
+              )}
+              {formState.errors.goods && (
+                <p>{formState.errors.goods[index]?.quantity?.message}</p>
+              )}
+              {formState.errors.goods && (
+                <p>{formState.errors.goods[index]?.comments?.message}</p>
+              )}
             </li>
           );
         })}
@@ -73,3 +79,6 @@ export const PassFormGoods = () => {
     </div>
   );
 };
+/* {Array.isArray(formState.errors.goods) ? (
+  <span>{formState.errors.goods[index].goodaName?.message}</span>
+) : null} */

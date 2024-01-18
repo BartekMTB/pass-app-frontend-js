@@ -27,7 +27,7 @@ export const PassesList = () => {
     //   content = pass.results.docs.map(({_id,passNumber,personOnPassCompany,baseCreatingPass})=> ({id:_id,passNumber:passNumber}))
   }
   //const reformattedArray = kvArray.map(({ key, value }) => ({ [key]: value }));
-  console.log(content);
+  // console.log(content);
 
   return (
     <div>

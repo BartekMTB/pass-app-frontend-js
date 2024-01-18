@@ -1,9 +1,34 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { PassFormGoods } from "./PassFormGoods";
 import css from "./PassForm.module.css";
+import Joi from "joi";
+import { joiResolver } from "@hookform/resolvers/joi";
 
 export const PassForm = () => {
-  /* const defaultValues = {
+  const PassSchema = Joi.object({
+    passNumber: Joi.string().forbidden(),
+    personOnPass: Joi.string().required(),
+    personOnPassCompany: Joi.string().optional(),
+    personOnPassID: Joi.string().optional(),
+    datePass: Joi.string().optional(),
+    // '2023-02-11T00:00:00.000Z' zrobic validacje bardziej szczegolowa
+    authorPass: Joi.string().required(),
+    directionOfOutflow: Joi.string().valid("doZakladu", "naZewnarz").required(), // enum
+    originOfGoods: Joi.string().required(),
+    baseCreatingPass: Joi.string().required(),
+    canceled: Joi.boolean().optional(),
+    goods: Joi.array()
+      .min(1)
+      .items({
+        goodaName: Joi.string().required(),
+        unit: Joi.string().valid("KG", "L", "M2", "M3", "SZT").required(), // enum
+        quantity: Joi.number().required(),
+        comments: Joi.string().required(),
+      })
+      .required(),
+  });
+
+  const defaultValues = {
     personOnPass: "John",
     personOnPassCompany: "Example Company",
     personOnPassID: "FK 3232",
@@ -21,9 +46,9 @@ export const PassForm = () => {
         comments: "mutylizacja opon",
       },
     ],
-  }; */
+  };
 
-  const defaultValues = {
+  /* const defaultValues = {
     goods: [
       {
         goodaName: "",
@@ -32,8 +57,11 @@ export const PassForm = () => {
         comments: "",
       },
     ],
-  };
-  const methods = useForm({ defaultValues });
+  }; */
+  const methods = useForm({
+    defaultValues,
+    resolver: joiResolver(PassSchema),
+  });
   console.log(methods);
 
   const onSubmit = (data) => console.log("data", data);
@@ -44,9 +72,7 @@ export const PassForm = () => {
         <div>
           <input
             className={css.formInput}
-            {...methods.register("personOnPass", {
-              required: "  Please enter full name person on Pass",
-            })}
+            {...methods.register("personOnPass", {})}
             placeholder="Person on Pass"
           />
           <span>{methods.formState.errors.personOnPass?.message}</span>
