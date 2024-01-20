@@ -1,10 +1,15 @@
 import { useForm, FormProvider } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { PassFormGoods } from "./PassFormGoods";
 import css from "./PassForm.module.css";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { useNewPassMutation } from "./passesApiSlice";
 
 export const PassForm = () => {
+  const [newPass, { isLoading }] = useNewPassMutation();
+  const navigate = useNavigate();
+
   const PassSchema = Joi.object({
     passNumber: Joi.string().forbidden(),
     personOnPass: Joi.string().required(),
@@ -32,7 +37,7 @@ export const PassForm = () => {
     personOnPass: "John",
     personOnPassCompany: "Example Company",
     personOnPassID: "FK 3232",
-    datePass: "2023-02-11",
+    datePass: "2024-02-11",
     authorPass: "Pan Dariusz",
     directionOfOutflow: "doZakladu",
     originOfGoods: "Produkcja odpad",
@@ -62,9 +67,36 @@ export const PassForm = () => {
     defaultValues,
     resolver: joiResolver(PassSchema),
   });
-  console.log(methods);
+  //console.log(methods);
 
-  const onSubmit = (data) => console.log("data", data);
+  const onSubmit = async (data) => {
+    console.log(isLoading);
+    try {
+      const newPassBody = await newPass(data).unwrap();
+      console.log(newPassBody);
+      console.log(isLoading);
+      navigate("/passes");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  /* 
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    console.log(isLoading)
+      try {
+        const user = await login({email: form.elements.email.value,
+          password: form.elements.password.value,}).unwrap()
+    //      console.log(user)
+        dispatch(setCredentials(user))
+        navigate('/')
+      } catch (err) {
+        console.log(err)
+      }
+    form.reset();
+  }; */
 
   return (
     <FormProvider {...methods}>

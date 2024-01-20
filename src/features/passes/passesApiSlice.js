@@ -1,4 +1,3 @@
-// Import the RTK Query methods from the React-specific entry point
 import { apiSlice } from "../../app/apiSlice";
 
 export const passesApiSlice = apiSlice.injectEndpoints({
@@ -9,11 +8,16 @@ export const passesApiSlice = apiSlice.injectEndpoints({
     }),
     getPasses: builder.query({
       query: (arg) => {
-        // const { year, passPerPage, numbeOfPage } = arg;
-        console.log("arg: ", arg);
         return {
           url: "/passes",
           params: { ...arg },
+        };
+      },
+    }),
+    getPassById: builder.query({
+      query: (_id) => {
+        return {
+          url: `/passes/${_id}`,
         };
       },
     }),
@@ -30,5 +34,9 @@ export const passesApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetPassesQuery, useGetPassQuery, useNewPassMutation } =
-  passesApiSlice;
+export const {
+  useGetPassesQuery,
+  useGetPassQuery,
+  useNewPassMutation,
+  useGetPassByIdQuery,
+} = passesApiSlice;

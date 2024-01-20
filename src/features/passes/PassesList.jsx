@@ -1,12 +1,14 @@
 import { useGetPassesQuery } from "./passesApiSlice";
 import css from "./PassesList.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const PassesList = () => {
-  const queryParams = {
+  const navigate = useNavigate();
+  /* const queryParams = {
     //  limit: "2",
     //  page: "2",
-    datePass: "2023",
-  };
+    datePass: "2024",
+  }; */
 
   const {
     data: pass,
@@ -14,7 +16,7 @@ export const PassesList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetPassesQuery(queryParams);
+  } = useGetPassesQuery(); //queryParams
 
   let content;
 
@@ -39,7 +41,16 @@ export const PassesList = () => {
                   <p>
                     {passNumber}, {personOnPassCompany}, {baseCreatingPass}
                   </p>
-                  <button className={css.passBtn}>edit</button>
+                  <button
+                    className={css.passBtn}
+                    type="button"
+                    onClick={() => {
+                      console.log("clicked ", _id);
+                      navigate("/editpass", { state: { _id: _id } });
+                    }}
+                  >
+                    edit
+                  </button>
                 </li>
               )
             )
