@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useGetPassesQuery } from "./passesApiSlice";
 import css from "./PassesList.module.css";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +17,8 @@ export const PassesList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetPassesQuery(); //queryParams
+    refetch,
+  } = useGetPassesQuery({}); //queryParams
 
   let content;
 
@@ -30,6 +32,9 @@ export const PassesList = () => {
   }
   //const reformattedArray = kvArray.map(({ key, value }) => ({ [key]: value }));
   // console.log(content);
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <div>

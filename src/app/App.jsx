@@ -13,6 +13,7 @@ const LoginPage = lazy(() => import("../pages/LoginPage"));
 const PassesPage = lazy(() => import("../pages/PassesPage"));
 const NewPass = lazy(() => import("../pages/NewPassPage"));
 const EditPass = lazy(() => import("../pages/EditPassPage"));
+const PrintoutPass = lazy(() => import("../pages/PrintoutPage"));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<LayoutPage />}>
         <Route index element={<HomePage />} />
+        <Route path="/printout" element={<PrintoutPass />} />
         <Route
           path="/register"
           element={

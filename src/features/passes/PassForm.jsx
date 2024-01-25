@@ -25,7 +25,7 @@ export const PassForm = () => {
     goods: Joi.array()
       .min(1)
       .items({
-        goodaName: Joi.string().required(),
+        goodsName: Joi.string().required(),
         unit: Joi.string().valid("KG", "L", "M2", "M3", "SZT").required(), // enum
         quantity: Joi.number().required(),
         comments: Joi.string().required(),
@@ -45,7 +45,7 @@ export const PassForm = () => {
     canceled: false,
     goods: [
       {
-        goodaName: "Makulatura",
+        goodsName: "Makulatura",
         unit: "KG",
         quantity: "500",
         comments: "mutylizacja opon",
@@ -80,23 +80,6 @@ export const PassForm = () => {
       console.log(err);
     }
   };
-
-  /* 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    console.log(isLoading)
-      try {
-        const user = await login({email: form.elements.email.value,
-          password: form.elements.password.value,}).unwrap()
-    //      console.log(user)
-        dispatch(setCredentials(user))
-        navigate('/')
-      } catch (err) {
-        console.log(err)
-      }
-    form.reset();
-  }; */
 
   return (
     <FormProvider {...methods}>

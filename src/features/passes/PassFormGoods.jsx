@@ -16,7 +16,7 @@ export const PassFormGoods = () => {
             <li key={field.id}>
               <input
                 style={{ width: "180px" }}
-                {...register(`goods.${index}.goodaName`)}
+                {...register(`goods.${index}.goodsName`)}
                 placeholder="Products name"
               />
 
@@ -48,7 +48,7 @@ export const PassFormGoods = () => {
                 Delete
               </button>
               {formState.errors.goods && (
-                <p>{formState.errors.goods[index]?.goodaName?.message}</p>
+                <p>{formState.errors.goods[index]?.goodsName?.message}</p>
               )}
               {formState.errors.goods && (
                 <p>{formState.errors.goods[index]?.unit?.message}</p>

@@ -11,7 +11,7 @@ const EditPass = () => {
   return (
     <div className={css.main_div}>
       <Helmet>
-        <title>New Pass</title>
+        <title>Edit Pass</title>
       </Helmet>
       <h1>Please edit form field to update current Pass</h1>
       <EditPassForm _id={location.state._id} />
