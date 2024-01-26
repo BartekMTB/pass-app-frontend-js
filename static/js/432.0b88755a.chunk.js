@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpass_app_frontend_js=self.webpackChunkpass_app_frontend_js||[]).push([[432],{4432:(s,e,a)=>{a.r(e),a.d(e,{default:()=>c});const n="homePage_container__kX88r",p="homePage_title__6RFqv";var _=a(184);const c=()=>(0,_.jsx)("div",{className:n,children:(0,_.jsx)("h1",{className:p,children:"Welcome to passes app :)"})})}}]);
+//# sourceMappingURL=432.0b88755a.chunk.js.map
