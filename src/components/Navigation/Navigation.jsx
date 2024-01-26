@@ -10,9 +10,6 @@ export const Navigation = () => {
       <NavLink to="/" className={css.link}>
         Home
       </NavLink>
-      <NavLink to="/printout" className={css.link}>
-        Printout
-      </NavLink>
 
       {isLoggedIn && (
         <div>

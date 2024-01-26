@@ -3,10 +3,10 @@ import { apiSlice } from "../../app/apiSlice";
 export const passesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPasses: builder.query({
-      query: (arg) => {
+      query: (page = 1) => {
+        console.log("page", page);
         return {
-          url: "/passes",
-          params: { ...arg },
+          url: `/passes/?limit=6&page=${page}`,
         };
       },
     }),
