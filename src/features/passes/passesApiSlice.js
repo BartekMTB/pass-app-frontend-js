@@ -9,6 +9,7 @@ export const passesApiSlice = apiSlice.injectEndpoints({
           url: `/passes/?limit=6&page=${page}`,
         };
       },
+      providesTags: ["Passes"],
     }),
     getPassById: builder.query({
       query: (_id) => {
@@ -16,6 +17,7 @@ export const passesApiSlice = apiSlice.injectEndpoints({
           url: `/passes/${_id}`,
         };
       },
+      providesTags: ["Passes"],
       transformResponse: (response) => {
         delete response.contactfound._id;
         delete response.contactfound.passNumber;
@@ -36,6 +38,7 @@ export const passesApiSlice = apiSlice.injectEndpoints({
           body,
         };
       },
+      invalidatesTags: ["Passes"],
     }),
     updatePass: builder.mutation({
       query: ({ _id, data }) => {
@@ -50,6 +53,7 @@ export const passesApiSlice = apiSlice.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["Passes"],
       /*  async onQueryStarted({ _id, ...data }, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData("getPassById", _id, (draft) => {

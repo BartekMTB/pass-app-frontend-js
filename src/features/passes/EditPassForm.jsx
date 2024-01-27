@@ -15,7 +15,7 @@ export const EditPassForm = ({ _id }) => {
     isSuccess,
     isError,
     error,
-    refetch,
+    //  refetch,
   } = useGetPassByIdQuery(_id);
   const [updatePass] = useUpdatePassMutation(_id);
 
@@ -54,7 +54,7 @@ export const EditPassForm = ({ _id }) => {
   const onSubmit = async (data) => {
     try {
       await updatePass({ _id, data }).unwrap();
-      refetch(); //for refetch passbyid, normmaly is not updated bvecouse of cache
+      //     refetch(); //for refetch passbyid, normmaly is not updated bvecouse of cache
       navigate("/passes");
     } catch (err) {
       console.log(err);

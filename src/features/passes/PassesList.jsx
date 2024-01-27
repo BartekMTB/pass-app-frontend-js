@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import { useGetPassesQuery } from "./passesApiSlice";
 import css from "./PassesList.module.css";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ export const PassesList = () => {
     isError,
     isFetching,
     error,
-    refetch,
+    //  refetch,
   } = useGetPassesQuery(page); //queryParams
 
   let content = "";
@@ -29,10 +29,10 @@ export const PassesList = () => {
     content = pass.results;
   }
 
-  useEffect(() => {
+  /*  useEffect(() => {
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); */
 
   return (
     <div>
