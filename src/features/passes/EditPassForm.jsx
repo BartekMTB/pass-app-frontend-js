@@ -20,7 +20,7 @@ export const EditPassForm = ({ _id }) => {
   const [updatePass] = useUpdatePassMutation(_id);
 
   const PassSchema = Joi.object({
-    passNumber: Joi.string().forbidden(),
+    // passNumber: Joi.string().forbidden().strip(),
     personOnPass: Joi.string().required(),
     personOnPassCompany: Joi.string().optional(),
     personOnPassID: Joi.string().optional(),
@@ -40,11 +40,12 @@ export const EditPassForm = ({ _id }) => {
         comments: Joi.string().required(),
       })
       .required(),
-  });
+  }).options({ stripUnknown: true });
 
   let values = {};
-
-  if (isSuccess) values = pass.contactfound;
+  if (isSuccess) values = pass;
+  console.log(values);
+  //delete values.passNumber; //need something smarter because passNumber is forbiden field
 
   const methods = useForm({ values, resolver: joiResolver(PassSchema) });
 

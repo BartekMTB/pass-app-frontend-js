@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { Helmet } from "react-helmet";
-import css from "./NewPassPage.module.css";
+import css from "./printoutPage.module.css";
 import { useLocation } from "react-router-dom";
 import { PassPrintout } from "../features/passes/PassPrintout";
 
