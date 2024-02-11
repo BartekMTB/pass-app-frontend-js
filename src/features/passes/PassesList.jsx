@@ -55,42 +55,35 @@ export const PassesList = () => {
       </HStack>
       <ul className={css.passesList}>
         {Array.isArray(content.docs)
-          ? content.docs
-              .toReversed()
-              .map(
-                ({
-                  _id,
-                  passNumber,
-                  personOnPassCompany,
-                  baseCreatingPass,
-                }) => (
-                  <li className={css.passesItem} key={_id}>
-                    <p>
-                      {passNumber}, {personOnPassCompany}, {baseCreatingPass}
-                    </p>
-                    <button
-                      className={css.passBtn}
-                      type="button"
-                      onClick={() => {
-                        console.log("clicked ", _id);
-                        navigate("/editpass", { state: { _id: _id } });
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className={css.passBtn}
-                      type="button"
-                      onClick={() => {
-                        console.log("clicked ", _id);
-                        navigate("/printout", { state: { _id: _id } });
-                      }}
-                    >
-                      Print
-                    </button>
-                  </li>
-                )
+          ? content.docs.map(
+              ({ _id, passNumber, personOnPassCompany, baseCreatingPass }) => (
+                <li className={css.passesItem} key={_id}>
+                  <p>
+                    {passNumber}, {personOnPassCompany}, {baseCreatingPass}
+                  </p>
+                  <button
+                    className={css.passBtn}
+                    type="button"
+                    onClick={() => {
+                      console.log("clicked ", _id);
+                      navigate("/editpass", { state: { _id: _id } });
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className={css.passBtn}
+                    type="button"
+                    onClick={() => {
+                      console.log("clicked ", _id);
+                      navigate("/printout", { state: { _id: _id } });
+                    }}
+                  >
+                    Print
+                  </button>
+                </li>
               )
+            )
           : null}
       </ul>
     </div>

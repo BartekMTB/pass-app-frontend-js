@@ -26,7 +26,7 @@ export const passesApiSlice = apiSlice.injectEndpoints({
         // because in joi striUnknown: true
 
         //do poprawy- petla w goods
-        console.log("transform", response);
+        //  console.log("transform", response);
         return response.contactfound;
       },
     }),
