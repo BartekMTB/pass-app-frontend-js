@@ -1,10 +1,10 @@
-import { useEffect, lazy } from "react";
-import { useDispatch } from "react-redux";
+import { lazy } from "react";
+
 import { Route, Routes } from "react-router-dom";
 import { LayoutPage } from "../components/LayoutPage/LayoutPage";
 import { PrivateRoute } from "../components/PrivateRoute";
 import { RestrictedRoute } from "../components/RestrictedRoute";
-import { refreshUser } from "../redux/auth/operations";
+
 import { useAuth } from "../hooks/useAuth";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
@@ -16,12 +16,7 @@ const EditPass = lazy(() => import("../pages/EditPassPage"));
 const PrintoutPass = lazy(() => import("../pages/PrintoutPage"));
 
 export const App = () => {
-  const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
 
   return isRefreshing ? (
     <b>Refreshing user...</b>

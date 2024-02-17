@@ -40,14 +40,14 @@ export const PassesList = () => {
         <Button
           onClick={() => setPage((prev) => prev - 1)}
           isLoading={isFetching}
-          disabled={page === 1}
+          isDisabled={page == 1}
         >
           <Icon as={MdArrowBack} />
         </Button>
         <Button
           onClick={() => setPage((prev) => prev + 1)}
           isLoading={isFetching}
-          disabled={page === content.totalPages}
+          isDisabled={page === content.totalPages}
         >
           <Icon as={MdArrowForward} />
         </Button>
