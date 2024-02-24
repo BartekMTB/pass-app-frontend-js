@@ -6,10 +6,7 @@ import { useLocation } from "react-router-dom";
 import { PassPrintout } from "../features/passes/PassPrintout";
 
 const PrintoutPass = () => {
-  // console.log("History.state after pushState: ", history.state);
   const location = useLocation();
-  //var ID = loc.state._id;
-  //console.log("heh", ID);
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,

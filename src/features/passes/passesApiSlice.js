@@ -19,14 +19,6 @@ export const passesApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: ["Passes"],
       transformResponse: (response) => {
-        //  delete response.contactfound._id;
-        //  delete response.contactfound.passNumber;
-        //  delete response.contactfound.goods[0]._id;
-        //  delete response.contactfound.__v;
-        // because in joi striUnknown: true
-
-        //do poprawy- petla w goods
-        //  console.log("transform", response);
         return response.contactfound;
       },
     }),

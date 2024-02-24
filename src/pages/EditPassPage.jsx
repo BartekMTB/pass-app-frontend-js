@@ -4,10 +4,7 @@ import css from "./NewPassPage.module.css";
 import { useLocation } from "react-router-dom";
 
 const EditPass = () => {
-  // console.log("History.state after pushState: ", history.state);
   const location = useLocation();
-  //var ID = loc.state._id;
-  //console.log("heh", ID);
   return (
     <div className={css.main_div}>
       <Helmet>

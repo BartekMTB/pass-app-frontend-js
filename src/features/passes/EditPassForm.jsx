@@ -15,17 +15,14 @@ export const EditPassForm = ({ _id }) => {
     isSuccess,
     isError,
     error,
-    //  refetch,
   } = useGetPassByIdQuery(_id);
   const [updatePass] = useUpdatePassMutation(_id);
 
   const PassSchema = Joi.object({
-    // passNumber: Joi.string().forbidden().strip(),
     personOnPass: Joi.string().required(),
     personOnPassCompany: Joi.string().optional(),
     personOnPassID: Joi.string().optional(),
     datePass: Joi.string().optional(),
-    // '2023-02-11T00:00:00.000Z' zrobic validacje bardziej szczegolowa
     authorPass: Joi.string().required(),
     directionOfOutflow: Joi.string().valid("doZakladu", "naZewnarz").required(), // enum
     originOfGoods: Joi.string().required(),
@@ -44,9 +41,6 @@ export const EditPassForm = ({ _id }) => {
 
   let values = {};
   if (isSuccess) values = pass;
-  console.log(values);
-  //delete values.passNumber; //need something smarter because passNumber is forbiden field
-
   const methods = useForm({ values, resolver: joiResolver(PassSchema) });
 
   if (isLoading) return <div>Loading</div>;
@@ -55,7 +49,6 @@ export const EditPassForm = ({ _id }) => {
   const onSubmit = async (data) => {
     try {
       await updatePass({ _id, data }).unwrap();
-      //     refetch(); //for refetch passbyid, normmaly is not updated bvecouse of cache
       navigate("/passes");
     } catch (err) {
       console.log(err);

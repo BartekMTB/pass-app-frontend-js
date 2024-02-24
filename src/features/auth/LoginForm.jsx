@@ -9,14 +9,6 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const [login, { isLoading }] = useLoginMutation();
 
-  /* const {
-    data: pass,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetPassQuery(passId) */
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;

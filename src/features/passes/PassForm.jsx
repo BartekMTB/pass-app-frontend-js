@@ -16,7 +16,6 @@ export const PassForm = () => {
     personOnPassCompany: Joi.string().optional(),
     personOnPassID: Joi.string().optional(),
     datePass: Joi.string().optional(),
-    // '2023-02-11T00:00:00.000Z' zrobic validacje bardziej szczegolowa
     authorPass: Joi.string().required(),
     directionOfOutflow: Joi.string().valid("doZakladu", "naZewnarz").required(), // enum
     originOfGoods: Joi.string().required(),
@@ -32,7 +31,7 @@ export const PassForm = () => {
       })
       .required(),
   });
-
+  /* 
   const defaultValues = {
     personOnPass: "John",
     personOnPassCompany: "Example Company",
@@ -51,9 +50,9 @@ export const PassForm = () => {
         comments: "mutylizacja opon",
       },
     ],
-  };
+  }; */
 
-  /* const defaultValues = {
+  const defaultValues = {
     goods: [
       {
         goodaName: "",
@@ -62,12 +61,11 @@ export const PassForm = () => {
         comments: "",
       },
     ],
-  }; */
+  };
   const methods = useForm({
     defaultValues,
     resolver: joiResolver(PassSchema),
   });
-  //console.log(methods);
 
   const onSubmit = async (data) => {
     console.log(isLoading);

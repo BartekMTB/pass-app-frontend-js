@@ -1,29 +1,30 @@
-import { useDispatch } from 'react-redux';
-import { register } from '../../redux/auth/operations';
-import css from './RegisterForm.module.css';
+import { useNavigate } from "react-router-dom";
+import { useSignupMutation } from "./authApiSlice";
+import css from "./RegisterForm.module.css";
 
 export const RegisterForm = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [signup, { isLoading }] = useSignupMutation();
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    dispatch(
-      register({
-        name: form.elements.name.value,
+    console.log(isLoading);
+    try {
+      const user = await signup({
         email: form.elements.email.value,
         password: form.elements.password.value,
-      })
-    );
+      }).unwrap();
+      console.log(user);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
     form.reset();
   };
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off" className={css.regform}>
-      <label className={css.reglabel}>
-        Username
-        <input type="text" name="name" className={css.reginput} />
-      </label>
       <label className={css.reglabel}>
         Email
         <input type="email" name="email" className={css.reginput} />

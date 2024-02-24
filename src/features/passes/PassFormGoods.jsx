@@ -79,6 +79,3 @@ export const PassFormGoods = () => {
     </div>
   );
 };
-/* {Array.isArray(formState.errors.goods) ? (
-  <span>{formState.errors.goods[index].goodaName?.message}</span>
-) : null} */
